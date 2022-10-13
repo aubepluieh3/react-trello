@@ -5,14 +5,28 @@ import styled from "styled-components";
 import { toDoState } from "./atoms";
 import Board from "./Components/Board";
 
+const Title = styled.div`
+  font-family: "Paytone One", sans-serif;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  span:first-child {
+    font-size: 64px;
+    margin-bottom: 10px;
+  }
+`;
+
 const Wrapper = styled.div`
   display: flex;
-  max-width: 680px;
+  max-width: 980px;
   width: 100vw;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  flex-direction: column;
 `;
 
 const Boards = styled.div`
@@ -60,6 +74,10 @@ function App() {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Wrapper>
+        <Title>
+          <span>kt wiz🧙🏻‍♂️</span>
+          <span>✨SHOW MAGIC TEAM KT✨</span>
+        </Title>
         <Boards>
           {Object.keys(toDos).map((boardId) => (
             <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />

@@ -10,6 +10,7 @@ interface IToDoState {
   [key: string]: ITodo[];
 }
 
+//localStorage
 const { persistAtom } = recoilPersist({
   key: "todoLocal",
   storage: localStorage,
@@ -18,9 +19,10 @@ const { persistAtom } = recoilPersist({
 export const toDoState = atom<IToDoState>({
   key: "toDo",
   default: {
-    "To Do": [],
-    Doing: [],
-    Done: [],
+    Pitcher: [],
+    Catcher: [],
+    Outfielder: [],
+    Infielder: [],
   },
   effects_UNSTABLE: [persistAtom],
 });

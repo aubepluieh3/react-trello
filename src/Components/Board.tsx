@@ -4,6 +4,8 @@ import styled from "styled-components";
 import DragabbleCard from "./DragabbleCard";
 import { ITodo, toDoState } from "../atoms";
 import { useSetRecoilState } from "recoil";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEraser } from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
   width: 300px;
@@ -16,13 +18,26 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-const Title = styled.h2`
+const Title = styled.div`
   text-align: center;
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 18px;
+  display: flex;
+  justify-content: center;
 `;
 
+const DelBtn = styled.button`
+  margin-left: 10px;
+  background-color: ${(props) => props.theme.boardColor};
+  border: none;
+  font-size: 15px;
+  color: black;
+  &:hover {
+    cursor: pointer;
+    color: coral;
+  }
+`;
 interface IAreaProps {
   isDraggingFromThis: boolean;
   isDraggingOver: boolean;
@@ -82,9 +97,25 @@ function Board({ toDos, boardId }: IBoardProps) {
     });
     setValue("toDo", "");
   };
+  const delBoard = () => {
+    setToDos((allBoards) => {
+      const entryBoards = Object.entries(allBoards);
+      const editBoards = entryBoards.filter(
+        (entryBoard) => entryBoard[0] !== boardId
+      );
+      const newBoards = Object.fromEntries(editBoards);
+
+      return newBoards;
+    });
+  };
   return (
     <Wrapper>
-      <Title>{boardId}</Title>
+      <Title>
+        <span>{boardId}</span>
+        <DelBtn onClick={delBoard}>
+          <FontAwesomeIcon icon={faEraser} />
+        </DelBtn>
+      </Title>
       <Form onSubmit={handleSubmit(onValid)}>
         <input
           {...register("toDo", { required: true })}
@@ -106,6 +137,7 @@ function Board({ toDos, boardId }: IBoardProps) {
                 index={index}
                 toDoId={toDo.id}
                 toDoText={toDo.text}
+                boardId={boardId}
               />
             ))}
             {magic.placeholder}
