@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   padding-top: 10px;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 8px 24px;
   min-height: 300px;
   display: flex;
   flex-direction: column;
@@ -46,7 +47,7 @@ interface IAreaProps {
 const Area = styled.div<IAreaProps>`
   background-color: ${(props) =>
     props.isDraggingOver
-      ? "#dfe6e9"
+      ? "#709666"
       : props.isDraggingFromThis
       ? "#b2bec3"
       : "transparent"};
@@ -120,7 +121,7 @@ function Board({ toDos, boardId }: IBoardProps) {
         <input
           {...register("toDo", { required: true })}
           type="text"
-          placeholder={`Add task on ${boardId}`}
+          placeholder={`Add Person on ${boardId}`}
         />
       </Form>
       <Droppable droppableId={boardId}>

@@ -14,7 +14,7 @@ const Title = styled.div`
   align-items: center;
   span:first-child {
     font-size: 64px;
-    margin-bottom: 10px;
+    margin-bottom: 17px;
   }
 `;
 
