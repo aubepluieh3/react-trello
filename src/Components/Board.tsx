@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   padding-top: 10px;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 20%) 0px 8px 24px;
+  box-shadow: rgb(255 255 255 / 49%) 0px 8px 24px;
   min-height: 300px;
   display: flex;
   flex-direction: column;

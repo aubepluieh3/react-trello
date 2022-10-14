@@ -4,8 +4,8 @@ import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { theme } from "./theme";
-
 import { createGlobalStyle } from "styled-components";
+import { Reset } from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -39,7 +39,7 @@ footer, header, hgroup, main, menu, nav, section {
     display: none;
 }
 body {
-  line-height: 1;
+
 }
 menu, ol, ul {
   list-style: none;
@@ -75,6 +75,7 @@ a {
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
+      <Reset />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <App />

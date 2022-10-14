@@ -4,18 +4,38 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { toDoState } from "./atoms";
 import Board from "./Components/Board";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHatWizard } from "@fortawesome/free-solid-svg-icons";
+import NewBoard from "./Components/NewBoard";
 
 const Title = styled.div`
   font-family: "Paytone One", sans-serif;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  span:first-child {
+  svg {
     font-size: 64px;
+    margin: 10px 0px 3px 0px;
+  }
+  svg + span {
+    font-size: 30px;
     margin-bottom: 17px;
   }
+
+  span:last-child {
+    transition: transform 2s ease-in;
+    &:hover {
+      transform: rotateX(90deg) scale(5);
+    }
+  }
+`;
+
+const NewBoardBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 `;
 
 const Wrapper = styled.div`
@@ -25,12 +45,14 @@ const Wrapper = styled.div`
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: auto;
   flex-direction: column;
 `;
 
 const Boards = styled.div`
-  display: flex;
+  margin: 13px 0px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   align-items: flex-start;
   width: 100%;
@@ -75,9 +97,14 @@ function App() {
     <DragDropContext onDragEnd={onDragEnd}>
       <Wrapper>
         <Title>
-          <span>kt wiz🧙🏻‍♂️</span>
+          <FontAwesomeIcon icon={faHatWizard} />
+          <span>kt wiz</span>
           <span>✨SHOW MAGIC TEAM KT✨</span>
         </Title>
+        <NewBoardBox>
+          <NewBoard />
+        </NewBoardBox>
+
         <Boards>
           {Object.keys(toDos).map((boardId) => (
             <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
