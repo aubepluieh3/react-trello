@@ -104,7 +104,6 @@ function App() {
         <NewBoardBox>
           <NewBoard />
         </NewBoardBox>
-
         <Boards>
           {Object.keys(toDos).map((boardId) => (
             <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />

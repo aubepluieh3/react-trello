@@ -5,7 +5,6 @@ import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { theme } from "./theme";
 import { createGlobalStyle } from "styled-components";
-import { Reset } from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -38,9 +37,11 @@ footer, header, hgroup, main, menu, nav, section {
 *[hidden] {
     display: none;
 }
-body {
 
+body{
+  line-height: 1;
 }
+
 menu, ol, ul {
   list-style: none;
 }
@@ -57,7 +58,7 @@ table {
   border-spacing: 0;
 }
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 body {
   font-weight: 300;
@@ -75,7 +76,6 @@ a {
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <Reset />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <App />
