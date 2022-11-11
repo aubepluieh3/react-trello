@@ -7,6 +7,7 @@ import Board from "./Components/Board";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHatWizard } from "@fortawesome/free-solid-svg-icons";
 import NewBoard from "./Components/NewBoard";
+import { BrowserRouter } from "react-router-dom";
 
 const Title = styled.div`
   font-family: "Paytone One", sans-serif;
@@ -94,23 +95,25 @@ function App() {
     }
   };
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Wrapper>
-        <Title>
-          <FontAwesomeIcon icon={faHatWizard} />
-          <span>kt wiz</span>
-          <span>✨SHOW MAGIC TEAM KT✨</span>
-        </Title>
-        <NewBoardBox>
-          <NewBoard />
-        </NewBoardBox>
-        <Boards>
-          {Object.keys(toDos).map((boardId) => (
-            <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
-          ))}
-        </Boards>
-      </Wrapper>
-    </DragDropContext>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Wrapper>
+          <Title>
+            <FontAwesomeIcon icon={faHatWizard} />
+            <span>kt wiz</span>
+            <span>✨SHOW MAGIC TEAM KT✨</span>
+          </Title>
+          <NewBoardBox>
+            <NewBoard />
+          </NewBoardBox>
+          <Boards>
+            {Object.keys(toDos).map((boardId) => (
+              <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
+            ))}
+          </Boards>
+        </Wrapper>
+      </DragDropContext>
+    </BrowserRouter>
   );
 }
 
