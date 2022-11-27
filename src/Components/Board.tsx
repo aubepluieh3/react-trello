@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import DragabbleCard from "./DragabbleCard";
-import { ITodo, toDoState } from "../atoms";
+import { IPlayer, playerState } from "../atoms";
 import { useSetRecoilState } from "recoil";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEraser } from "@fortawesome/free-solid-svg-icons";
@@ -74,7 +74,7 @@ const Form = styled.form`
 `;
 
 interface IBoardProps {
-  toDos: ITodo[];
+  toDos: IPlayer[];
   boardId: string;
 }
 
@@ -83,7 +83,7 @@ interface IForm {
 }
 
 function Board({ toDos, boardId }: IBoardProps) {
-  const setToDos = useSetRecoilState(toDoState);
+  const setToDos = useSetRecoilState(playerState);
   const { register, setValue, handleSubmit } = useForm<IForm>();
   const onValid = ({ toDo }: IForm) => {
     const newToDo = {

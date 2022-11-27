@@ -1,13 +1,13 @@
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 
-export interface ITodo {
+export interface IPlayer {
   id: number;
   text: string;
 }
 
-interface IToDoState {
-  [key: string]: ITodo[];
+interface IPlayerState {
+  [key: string]: IPlayer[];
 }
 
 //localStorage
@@ -16,7 +16,7 @@ const { persistAtom } = recoilPersist({
   storage: localStorage,
 });
 
-export const toDoState = atom<IToDoState>({
+export const playerState = atom<IPlayerState>({
   key: "toDo",
   default: {
     Pitcher: [],

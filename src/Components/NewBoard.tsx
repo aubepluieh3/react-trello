@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { toDoState } from "../atoms";
+import { playerState } from "../atoms";
 import React from "react";
 
 const Form = styled.form`
@@ -27,7 +27,7 @@ interface IForm {
 
 function PlayerBoard() {
   const { register, setValue, handleSubmit } = useForm<IForm>();
-  const setBoard = useSetRecoilState(toDoState);
+  const setBoard = useSetRecoilState(playerState);
 
   const onValid = ({ name }: IForm) => {
     setBoard((currentBoards) => {

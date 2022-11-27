@@ -2,7 +2,7 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { toDoState } from "../atoms";
+import { playerState } from "../atoms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEraser } from "@fortawesome/free-solid-svg-icons";
 
@@ -45,7 +45,7 @@ function DragabbleCard({
   index,
   boardId,
 }: IDragabbleCardProps) {
-  const setToDos = useSetRecoilState(toDoState);
+  const setToDos = useSetRecoilState(playerState);
   const onClick = () => {
     console.log(index);
     setToDos((allBoards) => {

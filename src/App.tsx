@@ -1,13 +1,11 @@
-import React from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { toDoState } from "./atoms";
+import { playerState } from "./atoms";
 import Board from "./Components/Board";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHatWizard } from "@fortawesome/free-solid-svg-icons";
 import NewBoard from "./Components/NewBoard";
-import { BrowserRouter } from "react-router-dom";
 
 const Title = styled.div`
   font-family: "Paytone One", sans-serif;
@@ -61,7 +59,7 @@ const Boards = styled.div`
 `;
 
 function App() {
-  const [toDos, setToDos] = useRecoilState(toDoState);
+  const [toDos, setToDos] = useRecoilState(playerState);
   const onDragEnd = (info: DropResult) => {
     const { destination, source } = info;
     if (!destination) return;
@@ -95,25 +93,23 @@ function App() {
     }
   };
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Wrapper>
-          <Title>
-            <FontAwesomeIcon icon={faHatWizard} />
-            <span>kt wiz</span>
-            <span>✨SHOW MAGIC TEAM KT✨</span>
-          </Title>
-          <NewBoardBox>
-            <NewBoard />
-          </NewBoardBox>
-          <Boards>
-            {Object.keys(toDos).map((boardId) => (
-              <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
-            ))}
-          </Boards>
-        </Wrapper>
-      </DragDropContext>
-    </BrowserRouter>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Wrapper>
+        <Title>
+          <FontAwesomeIcon icon={faHatWizard} />
+          <span>kt wiz</span>
+          <span>✨SHOW MAGIC TEAM KT✨</span>
+        </Title>
+        <NewBoardBox>
+          <NewBoard />
+        </NewBoardBox>
+        <Boards>
+          {Object.keys(toDos).map((boardId) => (
+            <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
+          ))}
+        </Boards>
+      </Wrapper>
+    </DragDropContext>
   );
 }
 
