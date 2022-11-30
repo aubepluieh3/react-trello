@@ -2,6 +2,8 @@
 
 22.10.12~22.10.14
 
+wth nomadcoder
+
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/></a>
 
