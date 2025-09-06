@@ -7,6 +7,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHatWizard } from "@fortawesome/free-solid-svg-icons";
 import NewBoard from "./Components/NewBoard";
 
+
+const MainContainer = styled.div`
+  min-height: 100vh;
+  padding: 20px 0;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  max-width: 980px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+
+const Boards = styled.div`
+  margin: 13px 0px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+  width: 100%;
+`;
+
 const Title = styled.div`
   font-family: "Paytone One", sans-serif;
   margin-bottom: 30px;
@@ -35,27 +60,6 @@ const NewBoardBox = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  max-width: 980px;
-  width: 100vw;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  height: auto;
-  flex-direction: column;
-`;
-
-const Boards = styled.div`
-  margin: 13px 0px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  gap: 10px;
 `;
 
 function App() {
@@ -93,23 +97,25 @@ function App() {
     }
   };
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Wrapper>
-        <Title>
-          <FontAwesomeIcon icon={faHatWizard} />
-          <span>kt wiz</span>
-          <span>✨SHOW MAGIC TEAM KT✨</span>
-        </Title>
-        <NewBoardBox>
-          <NewBoard />
-        </NewBoardBox>
-        <Boards>
-          {Object.keys(toDos).map((boardId) => (
-            <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
-          ))}
-        </Boards>
-      </Wrapper>
-    </DragDropContext>
+    <MainContainer>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Wrapper>
+          <Title>
+            <FontAwesomeIcon icon={faHatWizard} />
+            <span>kt wiz</span>
+            <span>✨SHOW MAGIC TEAM KT✨</span>
+          </Title>
+          <NewBoardBox>
+            <NewBoard />
+          </NewBoardBox>
+          <Boards>
+            {Object.keys(toDos).map((boardId) => (
+              <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
+            ))}
+          </Boards>
+        </Wrapper>
+      </DragDropContext>
+    </MainContainer>
   );
 }
 
